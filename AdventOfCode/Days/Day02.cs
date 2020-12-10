@@ -10,6 +10,16 @@ namespace AdventOfCode.Days
     {
         public override int First()
         {
+            return ParseInput().Count(p => p.ValidCharacterCount());
+        }
+
+        public override int Second()
+        {
+            return ParseInput().Count(p => p.ValidCharacterIndexes());
+        }
+
+        private List<PasswordPolicy> ParseInput()
+        {
             var inputs = File.ReadAllLines("Inputs/Day02.txt");
 
             var policies = new List<PasswordPolicy>();
@@ -18,12 +28,7 @@ namespace AdventOfCode.Days
                 policies.Add(PasswordPolicy.Parse(line));
             }
 
-            return policies.Count(p => p.IsValid());
-        }
-
-        public override int Second()
-        {
-            throw new NotImplementedException();
+            return policies;
         }
     }
 
@@ -51,11 +56,24 @@ namespace AdventOfCode.Days
             return policy;
         }
 
-        public bool IsValid()
+        public bool ValidCharacterCount()
         {
             var countInPassword = Password.Count(p => p == Character);
 
             return countInPassword >= Min && countInPassword <= Max;
+        }
+
+        public bool ValidCharacterIndexes()
+        {
+            var firstPosition = Password[Min - 1] == Character;
+            var secondPosition = Password[Max - 1] == Character;
+
+            // Both cannot be the value:
+            if (firstPosition && secondPosition)
+                return false;
+
+            // Only one of them can now:
+            return firstPosition || secondPosition;
         }
     }
 }

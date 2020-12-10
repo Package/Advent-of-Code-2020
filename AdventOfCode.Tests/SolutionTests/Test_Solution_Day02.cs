@@ -33,7 +33,7 @@ namespace AdventOfCode.Tests.SolutionTests
         }
 
         [TestMethod]
-        public void Test_Solves_Day01_Part1()
+        public void Test_Solves_Day02_Part1()
         {
             var day = new Day02();
             var answer = day.First();
@@ -42,9 +42,12 @@ namespace AdventOfCode.Tests.SolutionTests
         }
 
         [TestMethod]
-        public void Test_Solves_Day01_Part2()
+        public void Test_Solves_Day02_Part2()
         {
-            Assert.IsFalse(false);
+            var day = new Day02();
+            var answer = day.Second();
+
+            Assert.AreEqual(688, answer);
         }
     }
 }
