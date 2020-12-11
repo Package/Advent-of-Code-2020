@@ -10,7 +10,7 @@ namespace AdventOfCode.Tests.SolutionTests
     public class Test_Solution_Day05
     {
         [TestMethod]
-        public void Test_Solves_Day04_Part1()
+        public void Test_Solves_Day05_Part1()
         {
             var day = new Day05();
             var answer = day.First();
@@ -19,11 +19,12 @@ namespace AdventOfCode.Tests.SolutionTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NotImplementedException))]
-        public void Test_Solves_Day04_Part2()
+        public void Test_Solves_Day05_Part2()
         {
             var day = new Day05();
             var answer = day.Second();
+
+            Assert.AreEqual(592, answer);
         }
 
         [TestMethod]

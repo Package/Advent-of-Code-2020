@@ -8,15 +8,33 @@ namespace AdventOfCode.Days
 {
     public class Day05 : Day<int>
     {
-        public override int First()
+        public List<BoardingPass> Passes { get; private set; }
+
+        public Day05()
         {
             var inputs = File.ReadAllLines("Inputs/Day05.txt");
-            return inputs.Select(i => new BoardingPass(i)).Max(i => i.Id);
+            Passes = inputs.Select(i => new BoardingPass(i)).ToList();
+        }
+
+        public override int First()
+        {
+            return Passes.Max(i => i.Id);
         }
 
         public override int Second()
         {
-            throw new NotImplementedException();
+            var sortedPasses = Passes.OrderBy(p => p.Id).ToList();
+
+            foreach (var pass in sortedPasses)
+            {
+                var nextPass = sortedPasses.FirstOrDefault(p => p.Id == pass.Id + 1);
+                if (nextPass == null)
+                {
+                    return pass.Id + 1;
+                }
+            }
+
+            return -1;
         }
     }
 
