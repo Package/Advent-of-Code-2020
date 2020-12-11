@@ -24,7 +24,7 @@ namespace AdventOfCode.Tests.SolutionTests
             var day = new Day06();
             var answer = day.Second();
 
-            Assert.AreEqual(6, answer);
+            Assert.AreEqual(3137, answer);
         }
 
 
@@ -37,6 +37,18 @@ namespace AdventOfCode.Tests.SolutionTests
             Assert.AreEqual(3, day.GetUniqueAnswers("aabc"));
             Assert.AreEqual(1, day.GetUniqueAnswers("aaaa"));
             Assert.AreEqual(1, day.GetUniqueAnswers("b"));
+        }
+
+        [TestMethod]
+        public void Test_Answers_Fully_Contained_Count()
+        {
+            var day = new Day06();
+
+            Assert.AreEqual(3, day.GetAnswersFullyContained(new string[] { "abc" }));
+            Assert.AreEqual(0, day.GetAnswersFullyContained(new string[] { "a", "b", "c" }));
+            Assert.AreEqual(1, day.GetAnswersFullyContained(new string[] { "ab", "ac" }));
+            Assert.AreEqual(1, day.GetAnswersFullyContained(new string[] { "a", "a", "a", "a" }));
+            Assert.AreEqual(1, day.GetAnswersFullyContained(new string[] { "b" }));
         }
     }
 }
